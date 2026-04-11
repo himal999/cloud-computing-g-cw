@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "SalaryTrack Frontend",
+  "description": "Salary Track Frontend",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
