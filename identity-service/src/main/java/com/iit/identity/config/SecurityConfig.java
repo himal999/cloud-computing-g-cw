@@ -18,11 +18,12 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/v1/auth/**", "/actuator/**").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/api/v1/auth/**").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable);
+
         return http.build();
     }
 
