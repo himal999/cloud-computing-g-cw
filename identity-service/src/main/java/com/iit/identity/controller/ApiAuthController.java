@@ -1,75 +1,44 @@
 package com.iit.identity.controller;
 
-import com.iit.identity.model.SignupRequest;
-import com.iit.identity.model.TokenResponse;
 import com.iit.identity.service.IdentityAccountService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-
 @RestController
-@RequestMapping("/api/v1/auth")
+@RequestMapping(value = "/api/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class ApiAuthController {
 
-    private final IdentityAccountService accountService;
+    private final IdentityAccountService service;
 
-    public ApiAuthController(IdentityAccountService accountService) {
-        this.accountService = accountService;
+    @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> signup(@RequestBody Map<String, String> body) {
+
+        return ResponseEntity.ok(
+                service.signup(body.get("email"), body.get("password"))
+        );
     }
 
-    @PostMapping("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignupRequest req) {
-        if (req.getEmail() == null || req.getPassword() == null) {
-            return ResponseEntity.badRequest().body("Email and password required");
-        }
-        try {
-            String userId = accountService.signup(req.getEmail(), req.getPassword()).toString();
-            return ResponseEntity.ok(Map.of("userId", userId));
-        } catch (IllegalStateException ex) {
-            if ("EMAIL_EXISTS".equals(ex.getMessage())) {
-                return ResponseEntity.status(409).body("Email already exists");
-            }
-            throw ex;
-        }
-    }
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> body) {
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
-        if (body == null) {
-            return ResponseEntity.badRequest().body("Request body required");
-        }
-        String password = body.get("password");
-        String principal = firstNonBlank(body.get("email"), body.get("username"));
-        if (principal == null || password == null) {
-            return ResponseEntity.badRequest().body("email or username, and password required");
-        }
-        try {
-            TokenResponse token = accountService.login(principal.trim(), password);
-            return ResponseEntity.ok(token);
-        } catch (IllegalArgumentException ex) {
-            if ("INVALID_CREDENTIALS".equals(ex.getMessage())) {
-                return ResponseEntity.status(401).body("Invalid email or password");
-            }
-            throw ex;
-        }
+        return ResponseEntity.ok(
+                service.login(body.get("email"), body.get("password"))
+        );
     }
 
     @GetMapping("/verify")
-    public ResponseEntity<Map<String, String>> verify(@RequestParam String token) {
-        return accountService.verifyToken(token)
-                .map(userId -> ResponseEntity.ok(Map.of("userId", userId)))
-                .orElseGet(() -> ResponseEntity.status(401).body(Map.of("error", "Invalid token")));
-    }
+    public ResponseEntity<?> verify(@RequestParam String token) {
 
-    private static String firstNonBlank(String a, String b) {
-        if (a != null && !a.isBlank()) {
-            return a;
-        }
-        if (b != null && !b.isBlank()) {
-            return b;
-        }
-        return null;
+        return ResponseEntity.ok(
+                Map.of(
+                        "valid", true,
+                        "userId", service.verify(token)
+                )
+        );
     }
 }
