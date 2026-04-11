@@ -1,5 +1,6 @@
 package com.iit.identity.controller;
 
+import com.iit.identity.model.SignupRequest;
 import com.iit.identity.service.IdentityAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,10 +17,10 @@ public class ApiAuthController {
     private final IdentityAccountService service;
 
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> signup(@RequestBody Map<String, String> body) {
+    public ResponseEntity<Map<String, Object>> signup(@RequestBody SignupRequest request) {
 
         return ResponseEntity.ok(
-                service.signup(body.get("email"), body.get("password"))
+                service.signup(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword())
         );
     }
 
