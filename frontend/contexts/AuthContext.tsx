@@ -5,6 +5,8 @@ import { apiClient, LoginRequest, SignUpRequest } from '@/lib/api'
 
 interface User {
   email: string
+  firstName?: string
+  lastName?: string
   token?: string
 }
 
@@ -37,9 +39,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('authToken')
     const email = localStorage.getItem('userEmail')
+    const firstName = localStorage.getItem('userFirstName')
+    const lastName = localStorage.getItem('userLastName')
     
     if (token && email) {
-      setUser({ email, token })
+      setUser({ email, firstName: firstName || undefined, lastName: lastName || undefined, token })
     }
   }, [])
 
@@ -55,11 +59,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (response.data) {
         const token = response.data.token || 'mock-token'
         const email = credentials.email
+        const firstName = response.data.firstName
+        const lastName = response.data.lastName
         
         localStorage.setItem('authToken', token)
         localStorage.setItem('userEmail', email)
+        if (firstName) localStorage.setItem('userFirstName', firstName)
+        if (lastName) localStorage.setItem('userLastName', lastName)
         
-        setUser({ email, token })
+        setUser({ email, firstName, lastName, token })
         return { success: true }
       }
       
@@ -91,6 +99,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const logout = () => {
     localStorage.removeItem('authToken')
     localStorage.removeItem('userEmail')
+    localStorage.removeItem('userFirstName')
+    localStorage.removeItem('userLastName')
     setUser(null)
   }
 
