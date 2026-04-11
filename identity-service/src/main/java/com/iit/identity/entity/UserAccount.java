@@ -15,6 +15,12 @@ public class UserAccount {
     @Id
     private UUID id;
 
+    @Column(name = "first_name", length = 100)
+    private String firstName;
+
+    @Column(name = "last_name", length = 100)
+    private String lastName;
+
     @Column(nullable = false, unique = true, length = 320)
     private String email;
 
@@ -27,14 +33,24 @@ public class UserAccount {
     protected UserAccount() {
     }
 
-    public UserAccount(UUID id, String email, String passwordHash) {
+    public UserAccount(UUID id, String firstName, String lastName, String email, String passwordHash) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.passwordHash = passwordHash;
     }
 
     public UUID getId() {
         return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {

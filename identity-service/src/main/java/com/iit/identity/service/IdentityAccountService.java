@@ -26,7 +26,7 @@ public class IdentityAccountService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public Map<String, Object> signup(String email, String password) {
+    public Map<String, Object> signup(String firstName, String lastName, String email, String password) {
 
         if (email == null || password == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email and password required");
@@ -40,6 +40,8 @@ public class IdentityAccountService {
 
         UserAccount user = new UserAccount(
                 UUID.randomUUID(),
+                firstName,
+                lastName,
                 normalized,
                 passwordEncoder.encode(password)
         );
