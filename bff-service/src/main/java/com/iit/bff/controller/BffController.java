@@ -4,6 +4,7 @@ import com.iit.bff.model.LoginRequest;
 import com.iit.bff.model.SalarySubmission;
 import com.iit.bff.model.SignUpRequest;
 import com.iit.bff.model.VoteRequest;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,18 +14,21 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BffController {
     private final RestTemplate restTemplate = new RestTemplate();
 
+    @Value("${identity.service.url}")
+    private String identityServiceUrl;
+
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest request) {
-        return restTemplate.postForEntity("http://localhost:8080/identity/signup", request, Map.class);
+        return restTemplate.postForEntity(identityServiceUrl + "api/v1/auth/signup", request, Map.class);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        return restTemplate.postForEntity("http://localhost:8080/identity/login", request, Map.class);
+        return restTemplate.postForEntity(identityServiceUrl+"/api/v1/auth/login", request, Map.class);
     }
 
     @PostMapping("/submit")
