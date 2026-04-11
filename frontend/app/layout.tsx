@@ -5,7 +5,7 @@ import { AuthProvider } from '@/contexts/AuthContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'SalaryTrack',
+  title: 'Salary Track',
   description: 'Track and compare salaries across companies and roles',
 }
 
