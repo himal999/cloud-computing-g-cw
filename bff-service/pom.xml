@@ -32,6 +32,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<scope>provided</scope>
+				<optional>true</optional>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -116,6 +124,12 @@
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-webtestclient</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.42</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
