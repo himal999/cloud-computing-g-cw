@@ -48,6 +48,12 @@ public class ApiResponse<T> {
         return error(List.of(message), errorCode, message);
     }
 
+    /** Convenience when the first error line is enough for {@code message}. */
+    public static <T> ApiResponse<T> error(List<String> errors, int errorCode) {
+        String message = (errors != null && !errors.isEmpty()) ? errors.get(0) : "Error";
+        return error(errors, errorCode, message);
+    }
+
     public static <T> ApiResponse<T> error(List<String> errors, int errorCode, String message) {
         return ApiResponse.<T>builder()
                 .success(false)
