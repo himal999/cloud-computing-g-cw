@@ -156,15 +156,15 @@ export default function SubmitSalary() {
       <div className="relative z-10 flex items-center justify-center min-h-screen py-8">
         <div className="max-w-2xl w-full">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight drop-shadow-2xl">
+            <h1 className="text-4xl font-thin text-white mb-4 tracking-tight drop-shadow-2xl">
               Submit Salary Information
             </h1>
-            <p className="text-lg text-gray-200 font-light leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg text-gray-200 font-thin leading-relaxed max-w-2xl mx-auto">
               Help the community by sharing anonymous salary data. Your submission will be reviewed and approved by community members.
             </p>
           </div>
 
-          <form className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8" onSubmit={handleSubmit}>
+          <form className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-8" onSubmit={handleSubmit}>
             {errors.general && (
               <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium">
                 {errors.general}
@@ -173,15 +173,15 @@ export default function SubmitSalary() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="country" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Country *
+                <label htmlFor="country" className="block text-sm font-light text-white mb-2">
+                  Country <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="country"
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.country ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.country ? 'border-red-400 bg-red-50' : ''}`}
                 >
                   <option value="">Select Country</option>
                   <option value="US">United States</option>
@@ -199,8 +199,8 @@ export default function SubmitSalary() {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Company *
+                <label htmlFor="company" className="block text-sm font-light text-white mb-2">
+                  Company <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -208,15 +208,15 @@ export default function SubmitSalary() {
                   name="company"
                   value={formData.company}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.company ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.company ? 'border-red-400 bg-red-50' : ''}`}
                   placeholder="e.g., Google, Microsoft"
                 />
                 {errors.company && <p className="mt-1 text-sm text-red-600">{errors.company}</p>}
               </div>
 
               <div>
-                <label htmlFor="role" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Role *
+                <label htmlFor="role" className="block text-sm font-light text-white mb-2">
+                  Role <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -224,22 +224,22 @@ export default function SubmitSalary() {
                   name="role"
                   value={formData.role}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.role ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.role ? 'border-red-400 bg-red-50' : ''}`}
                   placeholder="e.g., Software Engineer, Product Manager"
                 />
                 {errors.role && <p className="mt-1 text-sm text-red-600">{errors.role}</p>}
               </div>
 
               <div>
-                <label htmlFor="level" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Level *
+                <label htmlFor="level" className="block text-sm font-light text-white mb-2">
+                  Level <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="level"
                   name="level"
                   value={formData.level}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.level ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.level ? 'border-red-400 bg-red-50' : ''}`}
                 >
                   <option value="">Select Level</option>
                   <option value="Junior">Junior (0-2 years)</option>
@@ -254,8 +254,8 @@ export default function SubmitSalary() {
               </div>
 
               <div>
-                <label htmlFor="yearsOfExperience" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Years of Experience *
+                <label htmlFor="yearsOfExperience" className="block text-sm font-light text-white mb-2">
+                  Years of Experience <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="number"
@@ -263,7 +263,7 @@ export default function SubmitSalary() {
                   name="yearsOfExperience"
                   value={formData.yearsOfExperience}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.yearsOfExperience ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.yearsOfExperience ? 'border-red-400 bg-red-50' : ''}`}
                   placeholder="e.g., 3"
                   min="0"
                   max="50"
@@ -272,8 +272,8 @@ export default function SubmitSalary() {
               </div>
 
               <div>
-                <label htmlFor="salary" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Annual Salary *
+                <label htmlFor="salary" className="block text-sm font-light text-white mb-2">
+                  Annual Salary <span className="text-red-500">*</span>
                 </label>
                 <div className="flex gap-2">
                   <select
@@ -281,7 +281,7 @@ export default function SubmitSalary() {
                     name="currency"
                     value={formData.currency}
                     onChange={handleInputChange}
-                    className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
+                    className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
                   >
                     <option value="USD">USD</option>
                     <option value="EUR">EUR</option>
@@ -299,7 +299,7 @@ export default function SubmitSalary() {
                     name="salary"
                     value={formData.salary}
                     onChange={handleInputChange}
-                    className={`flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.salary ? 'border-red-400 bg-red-50' : ''}`}
+                    className={`flex-1 px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.salary ? 'border-red-400 bg-red-50' : ''}`}
                     placeholder="e.g., 85000"
                   />
                 </div>
@@ -307,7 +307,7 @@ export default function SubmitSalary() {
               </div>
 
               <div>
-                <label htmlFor="bonus" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="bonus" className="block text-sm font-light text-white mb-2">
                   Annual Bonus (Optional)
                 </label>
                 <input
@@ -316,13 +316,13 @@ export default function SubmitSalary() {
                   name="bonus"
                   value={formData.bonus}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
                   placeholder="e.g., 10000"
                 />
               </div>
 
               <div>
-                <label htmlFor="stockOptions" className="block text-sm font-semibold text-gray-700 mb-2">
+                <label htmlFor="stockOptions" className="block text-sm font-light text-white mb-2">
                   Stock Options (Optional)
                 </label>
                 <input
@@ -331,21 +331,21 @@ export default function SubmitSalary() {
                   name="stockOptions"
                   value={formData.stockOptions}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300"
                   placeholder="e.g., 50000"
                 />
               </div>
 
               <div>
-                <label htmlFor="workModel" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Work Model *
+                <label htmlFor="workModel" className="block text-sm font-light text-white mb-2">
+                  Work Model <span className="text-red-500">*</span>
                 </label>
                 <select
                   id="workModel"
                   name="workModel"
                   value={formData.workModel}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.workModel ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.workModel ? 'border-red-400 bg-red-50' : ''}`}
                 >
                   <option value="">Select Work Model</option>
                   <option value="On-site">On-site</option>
@@ -356,8 +356,8 @@ export default function SubmitSalary() {
               </div>
 
               <div>
-                <label htmlFor="location" className="block text-sm font-semibold text-gray-700 mb-2">
-                  Work Location *
+                <label htmlFor="location" className="block text-sm font-light text-white mb-2">
+                  Work Location <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -365,18 +365,18 @@ export default function SubmitSalary() {
                   name="location"
                   value={formData.location}
                   onChange={handleInputChange}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.location ? 'border-red-400 bg-red-50' : ''}`}
+                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 text-sm placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.location ? 'border-red-400 bg-red-50' : ''}`}
                   placeholder="e.g., San Francisco, London, Colombo"
                 />
                 {errors.location && <p className="mt-1 text-sm text-red-600">{errors.location}</p>}
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-8 flex justify-center">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold text-lg shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                className="w-fit bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-light text-base shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
               >
                 {isSubmitting ? (
                   <>
@@ -392,7 +392,7 @@ export default function SubmitSalary() {
               </button>
             </div>
 
-            <div className="mt-6 text-center text-sm text-gray-600">
+            <div className="mt-6 text-center text-xs text-gray-200 font-thin">
               <p>Your submission will be completely anonymous. No personal information is stored with salary data.</p>
             </div>
           </form>

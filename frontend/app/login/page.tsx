@@ -1,16 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
+
+const GREETINGS = [
+  { country: 'US', text: 'Welcome back' },
+  { country: 'UK', text: 'Welcome back' },
+  { country: 'Canada', text: 'Welcome back' },
+  { country: 'Australia', text: 'Welcome back' },
+  { country: 'Germany', text: 'Willkommen zuruck' },
+  { country: 'France', text: 'Bon retour' },
+  { country: 'Sri Lanka', text: 'Ayubowan' },
+  { country: 'India', text: 'Swagat hai wapas' },
+  { country: 'Singapore', text: 'Welcome back' },
+  { country: 'Japan', text: 'Okaeri nasai' }
+]
 
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState<{ email?: string; password?: string; general?: string }>({})
+  const [greetingIndex, setGreetingIndex] = useState(0)
   const { login, isLoading } = useAuth()
   const router = useRouter()
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setGreetingIndex((prev) => (prev + 1) % GREETINGS.length)
+    }, 2500)
+
+    return () => clearInterval(intervalId)
+  }, [])
 
   const validateForm = () => {
     const newErrors: { email?: string; password?: string } = {}
@@ -68,28 +90,33 @@ export default function Login() {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="mb-4">
-            <h1 className="text-5xl font-extrabold text-white mb-2 tracking-tight drop-shadow-2xl">
+            <h1 className="text-4xl font-thin text-white mb-2 tracking-tight drop-shadow-2xl">
               Salary Track
             </h1>
-            <p className="text-lg text-gray-200 font-light leading-relaxed max-w-sm mx-auto">
+            <p className="text-base text-gray-200 font-extralight leading-relaxed max-w-sm mx-auto">
               Track and compare salaries across companies and roles
             </p>
           </div>
           
-          <h2 className="text-2xl font-semibold text-white tracking-tight mb-6">
-            Welcome back
+          <h2 className="text-xl font-light tracking-tight mb-6">
+            <span
+              key={greetingIndex}
+              className="typing-effect text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-blue-200 drop-shadow-[0_0_12px_rgba(56,189,248,0.35)]"
+            >
+              {GREETINGS[greetingIndex].text} ({GREETINGS[greetingIndex].country})
+            </span>
           </h2>
         </div>
         
-        <form className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 max-w-md w-full" onSubmit={handleSubmit}>
+        <form className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 max-w-md w-full text-white" onSubmit={handleSubmit}>
           {errors.general && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium">
+            <div className="mb-4 bg-red-500/20 border border-red-300/40 text-white px-4 py-3 rounded-xl text-xs font-light">
               {errors.general}
             </div>
           )}
           <div className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+              <label htmlFor="email" className="block text-xs font-light text-white mb-2 tracking-wide">
                 Email Address
               </label>
               <div className="relative">
@@ -100,17 +127,17 @@ export default function Login() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.email ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                  className={`w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.email ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                   placeholder="you@example.com"
                 />
                 {errors.email && (
-                  <p className="mt-2 text-sm text-red-600 font-medium">{errors.email}</p>
+                  <p className="mt-2 text-xs text-white font-light">{errors.email}</p>
                 )}
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+              <label htmlFor="password" className="block text-xs font-light text-white mb-2 tracking-wide">
                 Password
               </label>
               <div className="relative">
@@ -121,11 +148,11 @@ export default function Login() {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className={`w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.password ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                  className={`w-full px-4 py-3 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.password ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                   placeholder="Enter your password"
                 />
                 {errors.password && (
-                  <p className="mt-2 text-sm text-red-600 font-medium">{errors.password}</p>
+                  <p className="mt-2 text-xs text-white font-light">{errors.password}</p>
                 )}
               </div>
             </div>
@@ -137,7 +164,7 @@ export default function Login() {
                 type="checkbox"
                 className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-lg bg-gray-50"
               />
-              <label htmlFor="remember-me" className="ml-3 block text-sm font-medium text-gray-700">
+              <label htmlFor="remember-me" className="ml-3 block text-xs font-light text-white">
                 Remember me
               </label>
             </div>
@@ -146,7 +173,7 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold text-base shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-light text-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <>
@@ -166,14 +193,14 @@ export default function Login() {
 
         {/* Form Description */}
         <div className="mt-6 text-center space-y-3">
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-xs font-light text-gray-300 leading-relaxed">
             Access your personalized salary dashboard and analytics
           </p>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs font-light text-gray-300">
             Don't have an account?{' '}
             <Link 
               href="/register" 
-              className="font-medium text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+              className="font-light text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
             >
               Get started here
             </Link>
@@ -183,23 +210,23 @@ export default function Login() {
         {/* Trust Indicators */}
         <div className="mt-8">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4">
-            <h3 className="text-base font-semibold text-white mb-4 text-center">Trusted by professionals worldwide</h3>
+            <h3 className="text-sm font-light text-white mb-4 text-center">Trusted by professionals worldwide</h3>
             <div className="grid grid-cols-2 gap-4 text-center">
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-blue-400">50K+</div>
-                <div className="text-xs text-gray-300 font-medium">Active Users</div>
+                <div className="text-xl font-semibold text-blue-400">50K+</div>
+                <div className="text-xs text-gray-300 font-light">Active Users</div>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-blue-400">1M+</div>
-                <div className="text-xs text-gray-300 font-medium">Salary Records</div>
+                <div className="text-xl font-semibold text-blue-400">1M+</div>
+                <div className="text-xs text-gray-300 font-light">Salary Records</div>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-blue-400">500+</div>
-                <div className="text-xs text-gray-300 font-medium">Companies</div>
+                <div className="text-xl font-semibold text-blue-400">500+</div>
+                <div className="text-xs text-gray-300 font-light">Companies</div>
               </div>
               <div className="space-y-1">
-                <div className="text-2xl font-bold text-blue-400">4.8</div>
-                <div className="text-xs text-gray-300 font-medium">User Rating</div>
+                <div className="text-xl font-semibold text-blue-400">4.8</div>
+                <div className="text-xs text-gray-300 font-light">User Rating</div>
               </div>
             </div>
           </div>
