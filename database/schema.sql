@@ -29,3 +29,25 @@ CREATE TABLE IF NOT EXISTS community.votes (
 );
 
 CREATE INDEX IF NOT EXISTS idx_votes_submission ON community.votes (submission_id);
+
+CREATE TABLE IF NOT EXISTS salary.rawsubmission (
+    id               VARCHAR(64) PRIMARY KEY,
+    country          VARCHAR(8) NOT NULL,
+    company          VARCHAR(255) NOT NULL,
+    role             VARCHAR(255) NOT NULL,
+    level            VARCHAR(64),
+    years_experience INTEGER NOT NULL DEFAULT 0,
+    amount           NUMERIC(14,2) NOT NULL DEFAULT 0,
+    currency         VARCHAR(8),
+    status           VARCHAR(32),
+    anonymized       BOOLEAN NOT NULL DEFAULT TRUE,
+    upvotes          INTEGER NOT NULL DEFAULT 0,
+    downvotes        INTEGER NOT NULL DEFAULT 0,
+    created_at       TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
+-- Cleanup (run manually when resetting the database)
+-- DROP TABLE IF EXISTS salary.rawsubmission;
+-- DROP TABLE IF EXISTS community.votes;
+-- DROP TABLE IF EXISTS identity.sessions;
+-- DROP TABLE IF EXISTS identity.users;
