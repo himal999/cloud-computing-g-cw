@@ -1,19 +1,22 @@
 package com.iit.salary_submission.controller;
 
 import com.iit.salary_submission.model.SalarySubmission;
+import com.iit.salary_submission.repository.SalarySubmissionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequestMapping("/salary")
 public class SalaryController {
-    private final Map<String, SalarySubmission> submissions = new ConcurrentHashMap<>();
+    private final SalarySubmissionRepository repository;
+
+    public SalaryController(SalarySubmissionRepository repository) {
+        this.repository = repository;
+    }
 
     @PostMapping("/submit")
     public ResponseEntity<?> submitSalary(@RequestBody SalarySubmission request) {
@@ -26,31 +29,30 @@ public class SalaryController {
         request.setAnonymized(true);
         request.setUpvotes(0);
         request.setDownvotes(0);
-        submissions.put(id, request);
+        repository.save(request);
         return ResponseEntity.ok(Map.of("submissionId", id));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getSubmission(@PathVariable String id) {
-        SalarySubmission submission = submissions.get(id);
-        if (submission == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(submission);
+        return repository.findById(id)
+                .<ResponseEntity<?>>map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/all")
     public List<SalarySubmission> allSubmissions() {
-        return new ArrayList<>(submissions.values());
+        return repository.findAll();
     }
 
     @PostMapping("/{id}/approve")
     public ResponseEntity<?> approve(@PathVariable String id) {
-        SalarySubmission submission = submissions.get(id);
-        if (submission == null) {
-            return ResponseEntity.notFound().build();
-        }
-        submission.setStatus("APPROVED");
-        return ResponseEntity.ok(submission);
+        return repository.findById(id)
+                .<ResponseEntity<?>>map(submission -> {
+                    submission.setStatus("APPROVED");
+                    repository.save(submission);
+                    return ResponseEntity.ok(submission);
+                })
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

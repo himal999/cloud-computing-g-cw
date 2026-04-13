@@ -1,12 +1,16 @@
 package com.iit.salary_submission.model;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 public class SalarySubmission {
     private String id;
     private String country;
     private String company;
     private String role;
     private String level;
+    @JsonAlias({"yearsOfExperience"})
     private int yearsExperience;
+    @JsonAlias({"salary"})
     private double amount;
     private String currency;
     private String status;
