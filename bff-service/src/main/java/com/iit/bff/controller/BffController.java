@@ -24,6 +24,9 @@ public class BffController {
     @Value("${identity.service.url}")
     private String identityServiceUrl;
 
+    @Value("${salary.submission.service.url}")
+    private String salarySubmissionServiceUrl;
+
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpRequest request) {
         return restTemplate.postForEntity(
@@ -42,7 +45,7 @@ public class BffController {
 
     @PostMapping("/submit")
     public ResponseEntity<?> submitSalary(@RequestBody SalarySubmission request) {
-        return restTemplate.postForEntity("http://localhost:8082/salary/submit", request, Map.class);
+        return restTemplate.postForEntity(salarySubmissionServiceUrl + "/salary/submit", request, Map.class);
     }
 
     @PostMapping("/vote")
