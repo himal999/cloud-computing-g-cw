@@ -52,7 +52,7 @@ public class GlobalBffExceptionHandler {
         } catch (Exception e) {
             return ResponseEntity.status(status).body(Map.of(
                     "status", status.value(),
-                    "error", "Invalid service response",
+                    "error", body,
                     "raw", body));
         }
     }
