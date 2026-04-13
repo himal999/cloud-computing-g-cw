@@ -179,24 +179,26 @@ export default function SearchSalaries() {
       <div className="relative z-10 py-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
-          <h1 className="text-4xl font-extrabold text-white mb-4 tracking-tight drop-shadow-2xl">
+          <h1 className="text-4xl font-thin text-white mb-4 tracking-tight drop-shadow-2xl">
             Search Salary Data
           </h1>
-          <p className="text-lg text-gray-200 font-light leading-relaxed max-w-2xl mx-auto mb-6">
-            Browse anonymous salary submissions from the tech community. Filter by country, company, role, and more.
+          <p className="text-lg text-white font-extralight leading-relaxed max-w-2xl mx-auto mb-6">
+            Browse anonymous salary submissions from the tech community. Filter by 
+            <span className="typing-effect text-blue-200 transition duration-300 ease-in-out hover:text-white hover:tracking-wide">
+              country, company, role, and more.
+            </span>
           </p>
           {!user && (
-            <div className="flex justify-center gap-4">
-              <Link 
-                href="/login" 
-                className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+            <div className="mt-6 mb-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <Link
+                href="/login"
+                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-medium text-blue-200 shadow-sm transition duration-200 hover:bg-white/20 hover:text-white"
               >
                 Login to Vote
               </Link>
-              <span className="text-gray-400">|</span>
-              <Link 
-                href="/register" 
-                className="text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+              <Link
+                href="/register"
+                className="inline-flex items-center justify-center rounded-full bg-blue-500 px-5 py-3 text-sm font-medium text-white shadow-sm transition duration-200 hover:bg-blue-400"
               >
                 Create Account
               </Link>
@@ -204,11 +206,11 @@ export default function SearchSalaries() {
           )}
         </div>
 
-          <div className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Filters</h2>
+          <div className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 mb-8">
+            <h2 className="text-lg font-extralight text-white mb-4">Filters</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
-                <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="country" className="block text-xs font-extralight text-white mb-1">
                   Country
                 </label>
                 <select
@@ -216,7 +218,7 @@ export default function SearchSalaries() {
                   name="country"
                   value={filters.country}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 >
                   <option value="">All Countries</option>
                   <option value="US">United States</option>
@@ -233,7 +235,7 @@ export default function SearchSalaries() {
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="company" className="block text-xs font-extralight text-white mb-1">
                   Company
                 </label>
                 <input
@@ -243,12 +245,12 @@ export default function SearchSalaries() {
                   value={filters.company}
                   onChange={handleFilterChange}
                   placeholder="Search company..."
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
               </div>
 
               <div>
-                <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="role" className="block text-xs font-extralight text-white mb-1">
                   Role
                 </label>
                 <input
@@ -258,12 +260,12 @@ export default function SearchSalaries() {
                   value={filters.role}
                   onChange={handleFilterChange}
                   placeholder="Search role..."
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
               </div>
 
               <div>
-                <label htmlFor="level" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="level" className="block text-xs font-extralight text-white mb-1">
                   Level
                 </label>
                 <select
@@ -271,7 +273,7 @@ export default function SearchSalaries() {
                   name="level"
                   value={filters.level}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 >
                   <option value="">All Levels</option>
                   <option value="Junior">Junior</option>
@@ -285,7 +287,7 @@ export default function SearchSalaries() {
               </div>
 
               <div>
-                <label htmlFor="workModel" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="workModel" className="block text-xs font-extralight text-white mb-1">
                   Work Model
                 </label>
                 <select
@@ -293,7 +295,7 @@ export default function SearchSalaries() {
                   name="workModel"
                   value={filters.workModel}
                   onChange={handleFilterChange}
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 >
                   <option value="">All Models</option>
                   <option value="On-site">On-site</option>
@@ -303,7 +305,7 @@ export default function SearchSalaries() {
               </div>
 
               <div>
-                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="location" className="block text-xs font-extralight text-white mb-1">
                   Location
                 </label>
                 <input
@@ -313,12 +315,12 @@ export default function SearchSalaries() {
                   value={filters.location}
                   onChange={handleFilterChange}
                   placeholder="Search location..."
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
               </div>
 
               <div>
-                <label htmlFor="minSalary" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="minSalary" className="block text-xs font-extralight text-white mb-1">
                   Min Salary
                 </label>
                 <input
@@ -328,12 +330,12 @@ export default function SearchSalaries() {
                   value={filters.minSalary}
                   onChange={handleFilterChange}
                   placeholder="Min total comp..."
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
               </div>
 
               <div>
-                <label htmlFor="maxSalary" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="maxSalary" className="block text-xs font-extralight text-white mb-1">
                   Max Salary
                 </label>
                 <input
@@ -343,7 +345,7 @@ export default function SearchSalaries() {
                   value={filters.maxSalary}
                   onChange={handleFilterChange}
                   placeholder="Max total comp..."
-                  className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    className="w-full px-3 py-2 bg-transparent border border-white/20 rounded-lg text-sm font-light text-white placeholder-white/50 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                 />
               </div>
             </div>
@@ -358,7 +360,7 @@ export default function SearchSalaries() {
 
           <div className="space-y-4">
             {filteredSalaries.map((salary) => (
-              <div key={salary.id} className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-6">
+              <div key={salary.id} className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-xl font-bold text-gray-900">{salary.role}</h3>
@@ -475,8 +477,8 @@ export default function SearchSalaries() {
           </div>
 
           {filteredSalaries.length === 0 && (
-            <div className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-12 text-center">
-              <div className="text-gray-500 text-lg">
+            <div className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-12 text-center">
+              <div className="text-white text-base font-extralight mb-6">
                 {salaries.length === 0 
                   ? 'No salary submissions yet. Be the first to submit!'
                   : 'No salaries match your filters. Try adjusting your search criteria.'
@@ -485,7 +487,7 @@ export default function SearchSalaries() {
               {salaries.length === 0 && (
                 <button
                   onClick={() => window.location.href = '/submit'}
-                  className="mt-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold"
+                  className="mx-auto w-fit bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-light text-base shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
                 >
                   Submit First Salary
                 </button>

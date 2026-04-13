@@ -127,29 +127,29 @@ export default function Register() {
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
           <div className="mb-4">
-            <h1 className="text-5xl font-extrabold text-white mb-2 tracking-tight drop-shadow-2xl">
+            <h1 className="text-4xl font-thin text-white mb-2 tracking-tight drop-shadow-2xl">
               Salary Track
             </h1>
-            <p className="text-lg text-gray-200 font-light leading-relaxed max-w-sm mx-auto">
+            <p className="text-base text-gray-200 font-extralight leading-relaxed max-w-sm mx-auto">
               Join thousands of professionals tracking their career growth
             </p>
           </div>
           
-          <h2 className="text-2xl font-semibold text-white tracking-tight mb-6">
+          <h2 className="text-xl font-light text-white tracking-tight mb-6">
             Create your account
           </h2>
         </div>
         
-        <form className="bg-white/80 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 max-w-md w-full" onSubmit={handleSubmit}>
+        <form className="bg-transparent backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl p-6 max-w-md w-full text-white" onSubmit={handleSubmit}>
           {errors.general && (
-            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm font-medium">
+            <div className="mb-4 bg-red-500/20 border border-red-300/40 text-white px-4 py-3 rounded-xl text-xs font-light">
               {errors.general}
             </div>
           )}
           <div className="space-y-5">
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+                <label htmlFor="firstName" className="block text-xs font-light text-white mb-2 tracking-wide">
                   First Name
                 </label>
                 <input
@@ -158,16 +158,16 @@ export default function Register() {
                   type="text"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className={`w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.firstName ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                  className={`w-full px-3 py-2 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.firstName ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                   placeholder="John"
                 />
                 {errors.firstName && (
-                  <p className="mt-2 text-sm text-red-600 font-medium">{errors.firstName}</p>
+                  <p className="mt-2 text-xs text-white font-light">{errors.firstName}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+                <label htmlFor="lastName" className="block text-xs font-light text-white mb-2 tracking-wide">
                   Last Name
                 </label>
                 <input
@@ -176,17 +176,17 @@ export default function Register() {
                   type="text"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className={`w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.lastName ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                  className={`w-full px-3 py-2 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.lastName ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                   placeholder="Doe"
                 />
                 {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-600 font-medium">{errors.lastName}</p>
+                  <p className="mt-1 text-xs text-white font-light">{errors.lastName}</p>
                 )}
               </div>
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+              <label htmlFor="email" className="block text-xs font-light text-white mb-2 tracking-wide">
                 Email Address
               </label>
               <input
@@ -196,16 +196,16 @@ export default function Register() {
                 autoComplete="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className={`w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.email ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                className={`w-full px-3 py-2 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.email ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                 placeholder="you@example.com"
               />
               {errors.email && (
-                <p className="mt-1 text-sm text-red-600 font-medium">{errors.email}</p>
+                <p className="mt-1 text-xs text-white font-light">{errors.email}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+              <label htmlFor="password" className="block text-xs font-light text-white mb-2 tracking-wide">
                 Password
               </label>
               <input
@@ -214,19 +214,19 @@ export default function Register() {
                 type="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className={`w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.password ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                className={`w-full px-3 py-2 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.password ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                 placeholder="Create a strong password"
               />
               {errors.password && (
-                <p className="mt-1 text-sm text-red-600 font-medium">{errors.password}</p>
+                <p className="mt-1 text-xs text-white font-light">{errors.password}</p>
               )}
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-red-300 font-light">
                 Must contain at least 8 characters, including uppercase, lowercase, and numbers
               </p>
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-semibold text-gray-700 mb-2 tracking-wide">
+              <label htmlFor="confirmPassword" className="block text-xs font-light text-white mb-2 tracking-wide">
                 Confirm Password
               </label>
               <input
@@ -235,11 +235,11 @@ export default function Register() {
                 type="password"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className={`w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.confirmPassword ? 'border-red-400 bg-red-50' : 'hover:border-gray-300'}`}
+                className={`w-full px-3 py-2 bg-transparent border border-white/20 rounded-xl text-xs font-light text-white placeholder-white/60 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300 ${errors.confirmPassword ? 'border-red-300/70 bg-red-500/10' : 'hover:border-white/35'}`}
                 placeholder="Re-enter your password"
               />
               {errors.confirmPassword && (
-                <p className="mt-1 text-sm text-red-600 font-medium">{errors.confirmPassword}</p>
+                <p className="mt-1 text-xs text-white font-light">{errors.confirmPassword}</p>
               )}
             </div>
 
@@ -252,26 +252,26 @@ export default function Register() {
                 onChange={handleInputChange}
                 className={`h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-lg bg-gray-50 mt-1 ${errors.agreeToTerms ? 'border-red-400' : ''}`}
               />
-              <label htmlFor="agreeToTerms" className="ml-2 block text-xs text-gray-600 leading-relaxed">
+              <label htmlFor="agreeToTerms" className="ml-2 block text-xs text-white/80 font-light leading-relaxed">
                 I agree to the{' '}
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-medium underline transition-colors duration-200">
+                <a href="#" className="text-cyan-300 hover:text-cyan-200 font-light underline transition-colors duration-200">
                   Terms and Conditions
                 </a>{' '}
                 and{' '}
-                <a href="#" className="text-blue-600 hover:text-blue-700 font-medium underline transition-colors duration-200">
+                <a href="#" className="text-cyan-300 hover:text-cyan-200 font-light underline transition-colors duration-200">
                   Privacy Policy
                 </a>
               </label>
             </div>
             {errors.agreeToTerms && (
-              <p className="text-xs text-red-600 font-medium">{errors.agreeToTerms}</p>
+              <p className="text-xs text-white font-light">{errors.agreeToTerms}</p>
             )}
 
             <div>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold text-base shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
+                className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-light text-sm shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-3"
               >
                 {isLoading ? (
                   <>
@@ -291,14 +291,14 @@ export default function Register() {
 
         {/* Form Description */}
         <div className="mt-6 text-center space-y-3">
-          <p className="text-sm text-gray-300 leading-relaxed">
+          <p className="text-xs font-light text-gray-300 leading-relaxed">
             Start your journey to better salary insights
           </p>
-          <p className="text-sm text-gray-300">
+          <p className="text-xs font-light text-gray-300">
             Already have an account?{' '}
             <Link 
               href="/login" 
-              className="font-medium text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
+              className="font-light text-blue-400 hover:text-blue-300 underline transition-colors duration-200"
             >
               Sign in here
             </Link>
