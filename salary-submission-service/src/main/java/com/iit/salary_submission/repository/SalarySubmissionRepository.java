@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public class SalarySubmissionRepository {
 
-    private static final String TABLE_NAME = "salary.rawsubmission";
+    private static final String TABLE_NAME = "salary.submissions";
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -44,7 +44,7 @@ public class SalarySubmissionRepository {
             """);
 
         jdbcTemplate.execute("""
-            CREATE TABLE IF NOT EXISTS salary.rawsubmission (
+            CREATE TABLE IF NOT EXISTS salary.submissions (
                     id VARCHAR(64) PRIMARY KEY,
                     country VARCHAR(8) NOT NULL,
                     company VARCHAR(255) NOT NULL,
