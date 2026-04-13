@@ -98,7 +98,8 @@ export default function SubmitSalary() {
           location: ''
         })
       } else {
-        setErrors({ general: 'Failed to submit salary. Please try again.' })
+        const data = await response.json().catch(() => null)
+        setErrors({ general: data?.error ?? data?.message ?? 'Failed to submit salary. Please try again.' })
       }
     } catch (error) {
       setErrors({ general: 'An error occurred. Please try again.' })
