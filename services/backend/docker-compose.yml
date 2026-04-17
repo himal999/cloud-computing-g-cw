@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     healthcheck:
@@ -52,42 +52,21 @@ services:
       postgres:
         condition: service_healthy
 
-  search-service:
-    build: ./search-service
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/techsalary
-    ports:
-      - "5004:5004"
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  stats-service:
-    build: ./stats-service
-    environment:
-      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/techsalary
-    ports:
-      - "5005:5005"
-    depends_on:
-      postgres:
-        condition: service_healthy
-
+  
   bff-service:
     build: ./bff-service
     environment:
       IDENTITY_SERVICE_URL: http://identity-service:5001
       SALARY_SERVICE_URL:   http://salary-service:5002
       VOTE_SERVICE_URL:     http://vote-service:5003
-      SEARCH_SERVICE_URL:   http://search-service:5004
-      STATS_SERVICE_URL:    http://stats-service:5005
+      SEARCH_SERVICE_URL:   http://localhost:5004
+      STATS_SERVICE_URL:    http://localhost:5005
     ports:
       - "5000:5000"
     depends_on:
       - identity-service
       - salary-service
       - vote-service
-      - search-service
-      - stats-service
 
 volumes:
   postgres_data:
