@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: app
+data:
+  IDENTITY_SERVICE_URL: "http://identity-service.app.svc.cluster.local:5001"
+  SALARY_SERVICE_URL: "http://salary-service.app.svc.cluster.local:5002"
+  VOTE_SERVICE_URL: "http://vote-service.app.svc.cluster.local:5003"
+  SEARCH_SERVICE_URL: "http://search-service.app.svc.cluster.local:5004"
+  STATS_SERVICE_URL: "http://stats-service.app.svc.cluster.local:5005"
+  APPROVAL_THRESHOLD: "3"
+  TOKEN_EXP_HOURS: "24"
