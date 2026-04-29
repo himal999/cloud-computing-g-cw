@@ -2,8 +2,8 @@
 
 Community-driven tech salary transparency platform for Sri Lanka.
 
-## Team Members
-- Sasfak Ahamed — Frontend + BFF Service
+## Team Members Contributions
+- Sasfak Ahamed — Frontend + BFF Service 
 - Himal — Database Schema + Identity Service
 - Savinthie — Salary Service + Vote Service
 - Puselle — Search Service + Stats Service 
